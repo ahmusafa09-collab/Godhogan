@@ -64,6 +64,9 @@ export default function useCheckout(orderItems) {
     const requiredFields = PO_CONFIG.checkoutFields ?? [];
 
     for (const field of requiredFields) {
+       if (!field.required) {
+    continue;
+  }
       if (
         field.key === 'deliveryAddress' &&
         formData.fulfillmentMethod !== 'delivery'
